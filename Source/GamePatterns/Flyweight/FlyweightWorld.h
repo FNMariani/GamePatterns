@@ -3,27 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
 #include "FlyweightWorld.generated.h"
-
-/* DataTable Row for spawning monsters in game mode  */
-USTRUCT(BlueprintType)
-struct FTerrainDataRow : public FTableRowBase
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "TerrainData")
-	int MovementCost;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "TerrainData")
-	bool bIsWater;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "TerrainData")
-	TObjectPtr<UTexture2D> Texture;
-
-};
 
 UCLASS()
 class GAMEPATTERNS_API AFlyweightWorld : public AActor
@@ -39,11 +20,11 @@ public:
 
 protected:
 
-	UPROPERTY(EditDefaultsOnly, Category = "Terrain")
+	/*UPROPERTY(EditDefaultsOnly, Category = "Terrain")
 	int32 TerrainWidth = 1;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Terrain")
-	int32 TerrainHeight = 1;
+	int32 TerrainHeight = 1;*/
 
 	UPROPERTY(EditDefaultsOnly, Category = "Terrain")
 	TObjectPtr<class UFlyweightTerrainData> GrassTerrain;
@@ -55,5 +36,5 @@ protected:
 	TObjectPtr<UFlyweightTerrainData> RiverTerrain;
 
 private:
-	UFlyweightTerrainData* tiles_[10][10];
+	UFlyweightTerrainData* Tiles[10][10];
 };
