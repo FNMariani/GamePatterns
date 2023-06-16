@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
+using System.IO; 
 
 public class GamePatterns : ModuleRules
 {
@@ -19,5 +20,13 @@ public class GamePatterns : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+		
+		string ThirdPartyDirectory = System.IO.Path.Combine(ModuleDirectory, "../..", "ThirdParty");
+	
+		if (Target.Platform == UnrealTargetPlatform.Win64)
+		{
+			PublicIncludePaths.Add(Path.Combine(ThirdPartyDirectory, "Lua", "include"));
+			PublicAdditionalLibraries.Add(System.IO.Path.Combine(ThirdPartyDirectory, "Lua/libraries", "lua54.x64.lib"));
+		}
 	}
 }
